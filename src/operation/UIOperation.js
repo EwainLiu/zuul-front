@@ -2,7 +2,7 @@ import React from "react";
 import {Component} from "react";
 import {Card, Col} from "antd";
 import UIObjectBar from "../util/UIObjectBar";
-import DirectionBar from "../room/DirectionBar";
+import DirectionBar from "./DirectionBar";
 
 class UIOperation extends Component {
     constructor(props) {
