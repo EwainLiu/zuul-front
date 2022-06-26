@@ -3,8 +3,9 @@ import {Component} from "react";
 import {Button, Col, Modal, Popover, Radio, Row, Space} from "antd";
 import _ from 'lodash';
 
-const ButtonGroup = Button.Group;
-
+/**
+ * 物品栏工具，陈列物品，查看物品详情
+ */
 class UIObjectBar extends Component {
     constructor(props) {
         super(props);
