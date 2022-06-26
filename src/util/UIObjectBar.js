@@ -69,7 +69,7 @@ class UIObjectBar extends Component {
 
     render() {
 
-        /* 将objects用map封装为Button组件 */
+        /* 将objects用分别封装为Button组件 */
         const objs = _(this.props.objects).map((obj) => {
             return (
                 <Popover key={`obj_${obj.id}`} content={obj.description}>
