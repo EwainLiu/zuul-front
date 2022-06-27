@@ -4,6 +4,7 @@ import {Card, Col} from "antd";
 import api from "../util/config";
 import UIObjectBar from "../util/UIObjectBar";
 import PubSub from "pubsub-js";
+import UIInfoBar from "../util/UIInfoBar";
 
 class UIRoomInfo extends Component {
     constructor(props) {
@@ -72,13 +73,15 @@ class UIRoomInfo extends Component {
                     title={`当前房间`}
                     style={{height: "300px"}}
                 >
-                    <p>
-                        房间: {roomName}
-                    </p>
+                    <UIInfoBar
+                        label={"房间"}
+                        info={roomName}
+                        />
                     <br/>
-                    <p>
-                        房间描述: {roomDescription}
-                    </p>
+                    <UIInfoBar
+                        label={"房间描述"}
+                        info={roomDescription}
+                        />
                     <br/>
                     <UIObjectBar
                         objects={roomObjs}

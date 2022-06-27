@@ -43,7 +43,6 @@ class UIOperation extends Component {
         }
         await api.post('/move', params).then(({data}) => {
             if (data.code === 0) {
-                console.log("执行移动成功");
                 PubSub.publish("Move", direction);  // 发布
                 this.getDirection();
             } else {
@@ -58,7 +57,6 @@ class UIOperation extends Component {
     handleBack = async () => {
         await api.post('/back').then(({data}) => {
             if (data.code === 0) {
-                console.log("执行返回成功");
                 PubSub.publish("Back");  // 发布
                 this.getDirection();
             } else {

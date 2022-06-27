@@ -4,6 +4,7 @@ import {Card, Col} from "antd";
 import UIObjectBar from "../util/UIObjectBar";
 import api from "../util/config";
 import PubSub from 'pubsub-js'
+import UIInfoBar from "../util/UIInfoBar";
 
 class UIPlayerInfo extends Component {
     constructor(props) {
@@ -95,13 +96,15 @@ class UIPlayerInfo extends Component {
                     title={`玩家信息`}
                     style={{height: "300px"}}
                     >
-                    <p>
-                        名称: {playerName}
-                    </p>
+                    <UIInfoBar
+                        label={"名称"}
+                        info={playerName}
+                        />
                     <br/>
-                    <p>
-                        携带物品重量: {totalWeight} / {capacity}
-                    </p>
+                    <UIInfoBar
+                        label={"携带物品重量"}
+                        info={`${totalWeight} / ${capacity}`}
+                        />
                     <br/>
                     <UIObjectBar
                         objects={playerObjs}
