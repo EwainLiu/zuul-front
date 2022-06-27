@@ -36,8 +36,14 @@ class UIOperation extends Component {
     }
 
     /* 移动 */
-    handleMove = (direction) => {
+    handleMove = async (direction) => {
         console.log(direction);
+        let params = {
+            direction: direction
+        }
+        await api.post('/move', params).then(({data}) => {
+
+        });
     }
 
     /* 返回上一个房间 */

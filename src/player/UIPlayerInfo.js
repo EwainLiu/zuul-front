@@ -48,7 +48,20 @@ class UIPlayerInfo extends Component {
         }
         await api.post('/abandon', params).then(({data}) => {
             console.log("abandon => ", data);
-        });
+            if (data.code === 0) {
+                console.log("丢弃成功");
+                this.getPacket();
+            } else {
+                throw data;
+            }
+        }).catch((err) => {
+            console.log("丢弃物品失败");
+        })
+    }
+
+    /* 将物品添加到背包 */
+    handleAddItemToPacket = async (data) => {
+        let params = {...data}
     }
 
     /* 获取背包信息 */
