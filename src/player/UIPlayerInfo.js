@@ -15,6 +15,10 @@ class UIPlayerInfo extends Component {
         }
     }
 
+    fetch = (params = {}) => {
+
+    }
+
     /* 将物品从背包丢弃 */
     handleAbandon = () => {
         console.log('abandon');

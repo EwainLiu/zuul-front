@@ -2,7 +2,7 @@ import React from "react";
 import {Component} from "react";
 import {Card, Col} from "antd";
 import UIObjectBar from "../util/UIObjectBar";
-import DirectionBar from "./DirectionBar";
+import UIDirectionBar from "./UIDirectionBar";
 
 class UIOperation extends Component {
     constructor(props) {
@@ -18,6 +18,8 @@ class UIOperation extends Component {
         }
     }
 
+
+
     /* 将物品放入背包 */
     handlePick = () => {
         console.log("handlePick");
@@ -32,7 +34,7 @@ class UIOperation extends Component {
                     title={`操作`}
                     style={{height: "300px"}}
                     >
-                    <DirectionBar   // 方向控制组件
+                    <UIDirectionBar   // 方向控制组件
                         directions={directions}
                         handleMove={this.handleMove}
                         />

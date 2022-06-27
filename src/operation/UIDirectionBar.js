@@ -3,7 +3,7 @@ import {Component} from "react";
 import _ from 'lodash'
 import {Button, Col, Row, Space} from "antd";
 
-class DirectionBar extends Component {
+class UIDirectionBar extends Component {
 
     /* 移动到下一个房间 */
     handleMove(direction) {
@@ -39,4 +39,4 @@ class DirectionBar extends Component {
     }
 }
 
-export default DirectionBar;
+export default UIDirectionBar;
