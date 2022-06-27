@@ -2,6 +2,8 @@ import React from "react";
 import {Component} from "react";
 import {Card, Col} from "antd";
 import UIObjectBar from "../util/UIObjectBar";
+import api from "../util/config";
+
 
 class UIPlayerInfo extends Component {
     constructor(props) {
@@ -17,6 +19,26 @@ class UIPlayerInfo extends Component {
 
     fetch = (params = {}) => {
 
+    }
+
+    componentDidMount() {
+        this.getPlayer();
+    }
+
+    /* 获取玩家信息 */
+    getPlayer = async () => {
+        await api.get('/player').then(({data}) => {
+            if (data.code === 0) {
+                this.setState({
+                    playerName: data.name,
+                    playerObjs: data.objects,
+                })
+            } else {
+                throw data;
+            }
+        }).catch((error) => {
+            console.log("玩家信息请求失败");
+        })
     }
 
     /* 将物品从背包丢弃 */
