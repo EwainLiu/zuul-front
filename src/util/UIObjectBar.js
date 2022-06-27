@@ -48,8 +48,10 @@ class UIObjectBar extends Component {
     }
 
     /* 捡起物品放入背包 */
-    handlePick = () => {
-        this.props.handlePick();
+    handlePick = (obj) => {
+        if (obj) {
+            this.props.handlePick(obj.name);
+        }
 
         this.setState({
             id: -1,
@@ -67,14 +69,24 @@ class UIObjectBar extends Component {
         })
     }
 
+    /* 吃掉饼干 */
+    handleEat = () => {
+        this.state.handleEat();
+
+        this.setState({
+            id: -1,
+            visible: false
+        })
+    }
+
     render() {
 
         /* 将objects用分别封装为Button组件 */
-        const objs = _(this.props.objects).map((obj) => {
+        const objs = _(this.props.objects).map((obj, index) => {
             return (
-                <Popover key={`obj_${obj.id}`} content={obj.description}>
-                    <Button key={obj.id}
-                            onClick={() => this.handleClick(obj.name)}    // 传递id值
+                <Popover key={`obj_${index}`} content={obj.description}>
+                    <Button key={index}
+                            onClick={() => this.handleClick(index)}
                     >
                         {obj.name}
                     </Button>
@@ -100,9 +112,13 @@ class UIObjectBar extends Component {
                        visible={this.state.visible}
                        onOk={this.handleOk}
                        onCancel={this.handleCancel}
-                       footer={this.props.status==="packet" ?
-                           <Button key="abandon" onClick={this.handleAbandon}>丢弃</Button> :
-                           <Button key="pick" onClick={this.handlePick}>拾取</Button>}
+                       footer={[
+                           this.props.status==="packet" ?  // 是否在背包里
+                               <Button key="abandon" onClick={this.handleAbandon}>丢弃</Button> :
+                               <Button key="pick" onClick={this.handlePick.bind(this, obj)}>拾取</Button>,
+                           // this.props.status==="packet" && obj.name==="magicCookie" ?
+                           //     <Button key="eat" onClick={this.handleEat}>吃掉</Button> : {}
+                       ]}
                        >
                     <p>
                         重量 : {obj ? obj.weight : -1}
