@@ -4,6 +4,7 @@ import {Layout, Row} from 'antd'
 import UIRoomInfo from "../room/UIRoomInfo";
 import UIPlayerInfo from "../player/UIPlayerInfo";
 import UIOperation from "../operation/UIOperation";
+import {EventEmitter} from 'events';
 
 const {Content} = Layout;
 

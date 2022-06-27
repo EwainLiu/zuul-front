@@ -49,7 +49,7 @@ class UIObjectBar extends Component {
 
     /* 捡起物品放入背包 */
     handlePick = () => {
-        // this.props.handlePick();
+        this.props.handlePick();
 
         this.setState({
             id: -1,
@@ -74,7 +74,7 @@ class UIObjectBar extends Component {
             return (
                 <Popover key={`obj_${obj.id}`} content={obj.description}>
                     <Button key={obj.id}
-                            onClick={() => this.handleClick(obj.id)}    // 传递id值
+                            onClick={() => this.handleClick(obj.name)}    // 传递id值
                     >
                         {obj.name}
                     </Button>

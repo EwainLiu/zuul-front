@@ -3,7 +3,7 @@ import {Component} from "react";
 import {Card, Col} from "antd";
 import UIObjectBar from "../util/UIObjectBar";
 import api from "../util/config";
-
+import PubSub from 'pubsub-js'
 
 class UIPlayerInfo extends Component {
     constructor(props) {
@@ -21,6 +21,11 @@ class UIPlayerInfo extends Component {
     }
 
     componentDidMount() {
+        PubSub.subscribe("PickItem", (msg, data) => {
+            console.log('llsssl', msg, data);
+            this.getPlayer();
+            this.getPacket();
+        })
         this.getPlayer();
         this.getPacket();
     }
@@ -49,6 +54,7 @@ class UIPlayerInfo extends Component {
         await api.post('/abandon', params).then(({data}) => {
             console.log("abandon => ", data);
             if (data.code === 0) {
+                PubSub.publish("ThrowItem", item);  // 发布
                 console.log("丢弃成功");
                 this.getPacket();
             } else {
@@ -66,6 +72,7 @@ class UIPlayerInfo extends Component {
 
     /* 获取背包信息 */
     getPacket = async () => {
+        console.log("获取背包")
         await api.get('/packet').then(({data}) => {
             if (data.code === 0) {
                 this.setState({

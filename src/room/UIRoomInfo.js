@@ -3,6 +3,7 @@ import {Component} from "react";
 import {Card, Col} from "antd";
 import api from "../util/config";
 import UIObjectBar from "../util/UIObjectBar";
+import PubSub from "pubsub-js";
 
 class UIRoomInfo extends Component {
     constructor(props) {
@@ -15,6 +16,10 @@ class UIRoomInfo extends Component {
     }
 
     componentDidMount() {
+        PubSub.subscribe("ThrowItem", (msg, data) => {
+            console.log('llsssl', msg, data);
+            this.getRoomInfo();
+        })
         this.getRoomInfo();
     }
 
@@ -22,6 +27,7 @@ class UIRoomInfo extends Component {
     getRoomInfo = async () => {
         await api.get('/roomInfo').then(({data}) => {
             if (data.code === 0) {
+                console.log("请求房间信息成功")
                 this.setState({
                     roomName: data.name,
                     roomDescription: data.description,
@@ -32,6 +38,24 @@ class UIRoomInfo extends Component {
             }
         }).catch((err) => {
             console.log("房间信息请求失败")
+        })
+    }
+
+    /* 拾起物品 */
+    handlePick = async (name) => {
+        let params = {
+            name: name
+        }
+        await api.post('/pick', params).then(({data}) => {
+            if (data.code === 0) {
+                PubSub.publish("PickItem", name);  // 发布
+                console.log("拾起物品成功");
+                this.getPacket();
+            } else {
+                throw data;
+            }
+        }).catch((err) => {
+            console.log("拾起物品失败");
         })
     }
 
