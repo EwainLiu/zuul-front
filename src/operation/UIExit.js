@@ -1,6 +1,7 @@
 import React from "react";
 import {Component} from "react";
 import {Button, Col, Row} from "antd";
+import {NavLink} from "react-router-dom";
 
 class UIExit extends Component {
 
@@ -13,9 +14,11 @@ class UIExit extends Component {
                         退出游戏 :
                     </Col>
                     <Col>
-                        <Button onClick={this.handleBack}>
-                            退出
-                        </Button>
+                        <NavLink to={'/'}>
+                            <Button>
+                                退出
+                            </Button>
+                        </NavLink>
                     </Col>
                 </Row>
             </div>

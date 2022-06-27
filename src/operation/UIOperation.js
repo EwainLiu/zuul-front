@@ -7,18 +7,22 @@ import api from "../util/config";
 import UIBackBar from "./UIBackBar";
 import UIExit from "./UIExit";
 import PubSub from "pubsub-js";
+import UIHelpBar from "./UIHelpBar";
+import {useNavigate} from "react-router-dom";
 
 class UIOperation extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            directions: []
+            directions: [],
+            helpInfo: '...'
         }
     }
 
     componentDidMount() {
         this.getDirection();
+        this.getHelpInfo();
     }
 
     /* 获取前进方向信息 */
@@ -33,6 +37,21 @@ class UIOperation extends Component {
             }
         }).catch((err) => {
             console.log("方向信息请求失败")
+        })
+    }
+
+    /* 获取hep信息 */
+    getHelpInfo = async () => {
+        await api.get('/help').then(({data}) => {
+            if (data.code === 0) {
+                this.setState({
+                    helpInfo: data.helpInfo
+                })
+            } else {
+                throw data;
+            }
+        }).catch((err) => {
+            console.log("帮助信息请求失败")
         })
     }
 
@@ -67,13 +86,8 @@ class UIOperation extends Component {
         })
     }
 
-    /* 退出游戏 */
-    handleExit = () => {
-        console.log("exit")
-    }
-
     render() {
-        const {directions} = this.state;
+        const {directions, helpInfo} = this.state;
 
         return (
             <Col span={8}>
@@ -90,9 +104,11 @@ class UIOperation extends Component {
                         handleBack={this.handleBack}
                         />
                     <br/>
-                    <UIExit
-                        handleExit={this.handleExit}
+                    <UIHelpBar
+                        helpInfo={helpInfo}
                         />
+                    <br/>
+                    <UIExit/>
                 </Card>
             </Col>
         )
