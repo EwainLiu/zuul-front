@@ -55,7 +55,6 @@ class UIRoomInfo extends Component {
             if (data.code === 0) {
                 PubSub.publish("PickItem", name);  // 发布拾起
                 console.log("拾起物品成功");
-                this.getPacket();
             } else {
                 throw data;
             }

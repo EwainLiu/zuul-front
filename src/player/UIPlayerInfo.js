@@ -22,7 +22,6 @@ class UIPlayerInfo extends Component {
 
     componentDidMount() {
         PubSub.subscribe("PickItem", (msg, data) => {
-            console.log('llsssl', msg, data);
             this.getPlayer();
             this.getPacket();
         })
