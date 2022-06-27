@@ -7,7 +7,7 @@ class UIDirectionBar extends Component {
 
     /* 移动到下一个房间 */
     handleMove(direction) {
-
+        this.props.handleMove(direction);
     }
 
     render() {

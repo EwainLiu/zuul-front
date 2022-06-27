@@ -1,21 +1,23 @@
 import React from "react";
 import {Component} from "react";
-import {Card, Col} from "antd";
+import {Button, Card, Col} from "antd";
 import UIObjectBar from "../util/UIObjectBar";
 import UIDirectionBar from "./UIDirectionBar";
 import api from "../util/config";
+import UIBack from "./UIBack";
+import UIExit from "./UIExit";
 
 class UIOperation extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            roomObjs: [
-                {'id': 0, 'name': '物品1', 'weight': 1111, 'description': "这里用来预览详情..."},
-                {'id': 1, 'name': '物品2', 'weight': 4444, 'description': "..."}
-            ],
-            directions: ["前", "后", "右",]
+            directions: []
         }
+    }
+
+    componentDidMount() {
+        this.getDirection();
     }
 
     /* 获取前进方向信息 */
@@ -33,11 +35,19 @@ class UIOperation extends Component {
         })
     }
 
+    /* 移动 */
+    handleMove = (direction) => {
+        console.log(direction);
+    }
 
+    /* 返回上一个房间 */
+    handleBack = () => {
+        console.log("back");
+    }
 
-    /* 将物品放入背包 */
-    handlePick = () => {
-        console.log("handlePick");
+    /* 退出游戏 */
+    handleExit = () => {
+        console.log("exit")
     }
 
     render() {
@@ -52,6 +62,14 @@ class UIOperation extends Component {
                     <UIDirectionBar   // 方向控制组件
                         directions={directions}
                         handleMove={this.handleMove}
+                        />
+                    <br/>
+                    <UIBack
+                        handleBack={this.handleBack}
+                        />
+                    <br/>
+                    <UIExit
+                        handleExit={this.handleExit}
                         />
                 </Card>
             </Col>
