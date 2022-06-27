@@ -2,6 +2,7 @@ import React from "react";
 import {Component} from "react";
 import {Card, Col} from "antd";
 import api from "../util/config";
+import UIObjectBar from "../util/UIObjectBar";
 
 class UIRoomInfo extends Component {
     constructor(props) {
@@ -9,6 +10,7 @@ class UIRoomInfo extends Component {
         this.state = {
             roomName: '',
             roomDescription: '',
+            roomObjs: []
         }
     }
 
@@ -22,7 +24,8 @@ class UIRoomInfo extends Component {
             if (data.code === 0) {
                 this.setState({
                     roomName: data.name,
-                    roomDescription: data.description
+                    roomDescription: data.description,
+                    roomObjs: data.objects
                 })
             } else {
                 throw data;
@@ -33,7 +36,7 @@ class UIRoomInfo extends Component {
     }
 
     render() {
-        const {roomName, roomDescription} = this.state;
+        const {roomName, roomDescription, roomObjs} = this.state;
 
         return (
             <Col span={8}>
@@ -44,9 +47,16 @@ class UIRoomInfo extends Component {
                     <p>
                         房间: {roomName}
                     </p>
+                    <br/>
                     <p>
                         房间描述: {roomDescription}
                     </p>
+                    <br/>
+                    <UIObjectBar
+                        objects={roomObjs}
+                        status="room"
+                        handlePick={this.handlePick}
+                    />
                 </Card>
             </Col>
         )
