@@ -4,7 +4,7 @@ import {Button, Card, Col} from "antd";
 import UIObjectBar from "../util/UIObjectBar";
 import UIDirectionBar from "./UIDirectionBar";
 import api from "../util/config";
-import UIBack from "./UIBack";
+import UIBackBar from "./UIBackBar";
 import UIExit from "./UIExit";
 import PubSub from "pubsub-js";
 
@@ -88,7 +88,7 @@ class UIOperation extends Component {
                         handleMove={this.handleMove}
                         />
                     <br/>
-                    <UIBack
+                    <UIBackBar
                         handleBack={this.handleBack}
                         />
                     <br/>

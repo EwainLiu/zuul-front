@@ -2,7 +2,12 @@ import React from "react";
 import {Component} from "react";
 import {Button, Col, Row, Space} from "antd";
 
-class UIBack extends Component {
+class UIBackBar extends Component {
+
+    /* 返回上个房间 */
+    handleBack = () => {
+        this.props.handleBack();
+    }
 
     render() {
 
@@ -23,4 +28,4 @@ class UIBack extends Component {
     }
 }
 
-export default UIBack;
+export default UIBackBar;
