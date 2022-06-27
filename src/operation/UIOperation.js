@@ -38,7 +38,6 @@ class UIOperation extends Component {
 
     /* 移动 */
     handleMove = async (direction) => {
-        console.log(direction);
         let params = {
             direction: direction
         }
@@ -56,8 +55,18 @@ class UIOperation extends Component {
     }
 
     /* 返回上一个房间 */
-    handleBack = () => {
-        console.log("back");
+    handleBack = async () => {
+        await api.post('/back').then(({data}) => {
+            if (data.code === 0) {
+                console.log("执行返回成功");
+                PubSub.publish("Back");  // 发布
+                this.getDirection();
+            } else {
+                throw data;
+            }
+        }).catch((err) => {
+            console.log("执行返回失败");
+        })
     }
 
     /* 退出游戏 */

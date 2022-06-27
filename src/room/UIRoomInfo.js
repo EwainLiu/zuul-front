@@ -16,10 +16,13 @@ class UIRoomInfo extends Component {
     }
 
     componentDidMount() {
-        PubSub.subscribe("ThrowItem", (msg, data) => {
+        PubSub.subscribe("ThrowItem", () => {
             this.getRoomInfo();
         })
-        PubSub.subscribe("Move", (msg, data) => {
+        PubSub.subscribe("Move", () => {
+            this.getRoomInfo();
+        })
+        PubSub.subscribe("Back", () => {
             this.getRoomInfo();
         })
         this.getRoomInfo();
