@@ -17,7 +17,9 @@ class UIRoomInfo extends Component {
 
     componentDidMount() {
         PubSub.subscribe("ThrowItem", (msg, data) => {
-            console.log('llsssl', msg, data);
+            this.getRoomInfo();
+        })
+        PubSub.subscribe("Move", (msg, data) => {
             this.getRoomInfo();
         })
         this.getRoomInfo();
@@ -48,7 +50,7 @@ class UIRoomInfo extends Component {
         }
         await api.post('/pick', params).then(({data}) => {
             if (data.code === 0) {
-                PubSub.publish("PickItem", name);  // 发布
+                PubSub.publish("PickItem", name);  // 发布拾起
                 console.log("拾起物品成功");
                 this.getPacket();
             } else {

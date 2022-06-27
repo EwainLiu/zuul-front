@@ -6,6 +6,7 @@ import UIDirectionBar from "./UIDirectionBar";
 import api from "../util/config";
 import UIBack from "./UIBack";
 import UIExit from "./UIExit";
+import PubSub from "pubsub-js";
 
 class UIOperation extends Component {
     constructor(props) {
@@ -42,8 +43,16 @@ class UIOperation extends Component {
             direction: direction
         }
         await api.post('/move', params).then(({data}) => {
-
-        });
+            if (data.code === 0) {
+                console.log("执行移动成功");
+                PubSub.publish("Move", direction);  // 发布
+                this.getDirection();
+            } else {
+                throw data;
+            }
+        }).catch((err) => {
+            console.log("执行移动失败");
+        })
     }
 
     /* 返回上一个房间 */
