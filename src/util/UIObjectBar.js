@@ -70,8 +70,8 @@ class UIObjectBar extends Component {
     }
 
     /* 吃掉饼干 */
-    handleEat = () => {
-        this.state.handleEat();
+    handleEat = (name) => {
+        this.props.handleEat(name);
 
         this.setState({
             id: -1,
@@ -94,7 +94,7 @@ class UIObjectBar extends Component {
             )
         }).value();
 
-        const obj = this.props.objects[this.state.id];
+        const obj = this.props.objects[this.state.id] ? this.props.objects[this.state.id] : {id: -1, name: ""}
 
         return (
             <div>
@@ -116,8 +116,8 @@ class UIObjectBar extends Component {
                            this.props.status==="packet" ?  // 是否在背包里
                                <Button key="abandon" onClick={this.handleAbandon}>丢弃</Button> :
                                <Button key="pick" onClick={this.handlePick.bind(this, obj)}>拾取</Button>,
-                           // this.props.status==="packet" && obj.name==="magicCookie" ?
-                           //     <Button key="eat" onClick={this.handleEat}>吃掉</Button> : {}
+                           obj.name==="magic cookie" || obj.name==="cookie" ?
+                               <Button key="eat" onClick={this.handleEat.bind(this, obj.name)}>吃掉</Button> : {}
                        ]}
                        >
                     <p>

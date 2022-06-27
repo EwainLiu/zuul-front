@@ -87,6 +87,24 @@ class UIPlayerInfo extends Component {
         })
     }
 
+    /* 吃掉饼干 */
+    handleEat = async (name) => {
+        let params = {
+            itemName: name
+        }
+        await api.post('/eat', params).then(({data}) => {
+            console.log("eat => ", data);
+            if (data.code === 0) {
+                this.getPacket();
+                this.getPlayer();
+            } else {
+                throw data;
+            }
+        }).catch((err) => {
+            console.log("吃饼干失败");
+        })
+    }
+
     render() {
         const {playerName, playerObjs, capacity, totalWeight} = this.state;
 
