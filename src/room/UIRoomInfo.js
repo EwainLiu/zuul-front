@@ -42,7 +42,10 @@ class UIRoomInfo extends Component {
                     style={{height: "300px"}}
                 >
                     <p>
-                        {roomDescription}
+                        房间: {roomName}
+                    </p>
+                    <p>
+                        房间描述: {roomDescription}
                     </p>
                 </Card>
             </Col>
