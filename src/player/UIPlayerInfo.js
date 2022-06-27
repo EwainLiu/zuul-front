@@ -9,11 +9,10 @@ class UIPlayerInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            playerName: 'Anonymous',
-            playerObjs: [
-                {'id': 0, 'name': '背包物品0', 'weight': 1111, 'description': "这是详情..."},
-                {'id': 1, 'name': '背包物品1', 'weight': 1111, 'description': "详情..."},
-            ]
+            playerName: '',
+            playerObjs: [],
+            capacity: -1,
+            totalWeight: -1
         }
     }
 
@@ -23,6 +22,7 @@ class UIPlayerInfo extends Component {
 
     componentDidMount() {
         this.getPlayer();
+        this.getPacket();
     }
 
     /* 获取玩家信息 */
@@ -31,33 +31,59 @@ class UIPlayerInfo extends Component {
             if (data.code === 0) {
                 this.setState({
                     playerName: data.name,
-                    playerObjs: data.objects,
+                    capacity: data.capacity
                 })
             } else {
                 throw data;
             }
-        }).catch((error) => {
-            console.log("玩家信息请求失败");
+        }).catch((err) => {
+            console.log("玩家信息请求失败")
         })
     }
 
     /* 将物品从背包丢弃 */
-    handleAbandon = () => {
-        console.log('abandon');
+    handleAbandon = async (item) => {
+        let params = {
+            name: item
+        }
+        await api.post('/abandon', params).then(({data}) => {
+            console.log("abandon => ", data);
+        });
+    }
+
+    /* 获取背包信息 */
+    getPacket = async () => {
+        await api.get('/packet').then(({data}) => {
+            if (data.code === 0) {
+                this.setState({
+                    playerObjs: data.objects,
+                    totalWeight: data.totalWeight
+                })
+            } else {
+                throw data;
+            }
+        }).catch((err) => {
+            console.log("背包信息请求失败")
+        })
     }
 
     render() {
-        const {playerName, playerObjs} = this.state;
+        const {playerName, playerObjs, capacity, totalWeight} = this.state;
 
         return (
             <Col span={8}>
                 <Card
-                    title={`玩家信息 -- ${playerName}`}
+                    title={`玩家信息`}
                     style={{height: "300px"}}
                     >
                     <p>
-                        玩家信息...
+                        名称: {playerName}
                     </p>
+                    <br/>
+                    <p>
+                        携带物品重量: {totalWeight} / {capacity}
+                    </p>
+                    <br/>
                     <UIObjectBar
                         objects={playerObjs}
                         status="packet" // 物品在背包里

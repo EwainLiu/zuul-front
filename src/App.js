@@ -12,10 +12,8 @@ class App extends Component {
 
     constructor() {
         super();
-        api.get('/address').then(res => {
-            console.log(res.data)
-        })
     }
+
     render() {
         return (
             <Scene />
