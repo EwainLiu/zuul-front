@@ -8,7 +8,7 @@ class UIInfoBar extends Component {
 
         return (
             <Row>
-                <Col span={4}>
+                <Col span={8}>
                     {this.props.label}:
                 </Col>
                 <Col>

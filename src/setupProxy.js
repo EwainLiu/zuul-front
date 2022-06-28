@@ -1,4 +1,3 @@
-//const proxy = require("http-proxy-middleware");这个不对，坑！！！！！
 const { createProxyMiddleware } = require('http-proxy-middleware');//现在要改成这样
 
 module.exports = function(app) {
@@ -12,7 +11,7 @@ module.exports = function(app) {
             changeOrigin: true,
             // 重写接口路由
             pathRewrite: {
-                '^/api': '' // 这样处理后，最终得到的接口路径为： http://localhost:8080/xxx
+                '^/api': '' // 这样处理后，最终得到的接口路径为： http://localhost:8001/xxx
             }
         })
     )

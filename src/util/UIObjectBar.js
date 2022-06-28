@@ -1,7 +1,12 @@
 import React from "react";
 import {Component} from "react";
-import {Button, Col, Modal, Popover, Radio, Row, Space} from "antd";
+import {Avatar, Button, Card, Col, Layout, Modal, Popover, Radio, Row, Space} from "antd";
+import { EditOutlined, EllipsisOutlined, EyeOutlined } from '@ant-design/icons';
+
 import _ from 'lodash';
+import Meta from "antd/es/card/Meta";
+import Sider from "antd/es/layout/Sider";
+import {Content} from "antd/es/layout/layout";
 
 /**
  * 物品栏工具，陈列物品，查看物品详情
@@ -83,15 +88,51 @@ class UIObjectBar extends Component {
     render() {
 
         /* 将objects用分别封装为Button组件 */
-        const objs = _(this.props.objects).map((obj, index) => {
+        const objs_row = _(this.props.objects).map((obj, index) => {
             return (
-                <Popover key={`obj_${index}`} content={obj.description}>
-                    <Button key={index}
-                            onClick={() => this.handleClick(index)}
-                    >
-                        {obj.name}
-                    </Button>
-                </Popover>
+                <Row span={8}>
+                    <Popover key={`obj_${index}`} content={obj.description}>
+                        <Card
+                            title={obj.name}
+                            seize="small"
+                            extra={<EyeOutlined key="EyeOutlined" onClick={() => {this.handleClick(index)}}></EyeOutlined>}
+                            style={{width: 200}}
+                        >
+                            <Meta
+                                description={obj.description}
+                            />
+                        </Card>
+                        {/*<Button key={index}*/}
+                        {/*        onClick={() => this.handleClick(index)}*/}
+                        {/*>*/}
+                        {/*    {obj.name}*/}
+                        {/*</Button>*/}
+                    </Popover>
+                </Row>
+            )
+        }).value();
+
+        const objs_col = _(this.props.objects).map((obj, index) => {
+            return (
+                <Col span={8}>
+                    <Popover key={`obj_${index}`} content={obj.description}>
+                        <Card
+                            title={obj.name}
+                            seize="small"
+                            extra={<EyeOutlined key="EyeOutlined" onClick={() => {this.handleClick(index)}}></EyeOutlined>}
+                            style={{width: 200}}
+                        >
+                            <Meta
+                                description={obj.description}
+                            />
+                        </Card>
+                        {/*<Button key={index}*/}
+                        {/*        onClick={() => this.handleClick(index)}*/}
+                        {/*>*/}
+                        {/*    {obj.name}*/}
+                        {/*</Button>*/}
+                    </Popover>
+                </Col>
             )
         }).value();
 
@@ -99,16 +140,33 @@ class UIObjectBar extends Component {
 
         return (
             <div>
-                <Row>
-                    <Col span={4}>
-                        物品：
+                {this.props.status==="packet" ?
+                    <Row style={{height: "400px", width: "200px", overflow: "auto"}}>
+                        <Col span={8}>
+                            背包：
+                        </Col>
+                        <Col>
+                            {/*<Space>*/}
+                            {objs_row}
+                            {/*</Space>*/}
+                        </Col>
+                    </Row>
+                     :
+                    <Col
+                        style={{width: "800px", height: "150px", overflow: "auto"}}
+                    >
+                        <Col span={4}>
+                            物品：
+                        </Col>
+                        <Row>
+                            {/*<Space>*/}
+                            {objs_col}
+                            {/*</Space>*/}
+                        </Row>
                     </Col>
-                    <Col>
-                        <Space>
-                            {objs}
-                        </Space>
-                    </Col>
-                </Row>
+                }
+
+
                 <Modal title={obj ? obj.name : ''}
                        visible={this.state.visible}
                        onOk={this.handleOk}

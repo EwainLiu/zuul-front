@@ -4,7 +4,7 @@ import Scene from "./scene/Scene";
 import axios from "axios";
 import api from "./util/config";
 import {Routes, Route} from "react-router-dom"
-import Home from "./Home";
+import Home from "./scene/Home";
 class App extends Component {
 
     render() {

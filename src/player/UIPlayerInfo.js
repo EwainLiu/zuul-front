@@ -113,17 +113,20 @@ class UIPlayerInfo extends Component {
             <Col span={8}>
                 <Card
                     title={`玩家信息`}
-                    style={{height: "300px"}}
+                    style={{height: "640px", width: "300px"}}
                     >
-                    <UIInfoBar
-                        label={"名称"}
-                        info={playerName}
+                    <Card>
+                        <UIInfoBar
+                            label={"名称"}
+                            info={playerName}
                         />
-                    <br/>
-                    <UIInfoBar
-                        label={"负重"}
-                        info={`${totalWeight} / ${capacity}`}
+                        <br/>
+                        <UIInfoBar
+                            label={"负重"}
+                            info={`${totalWeight} / ${capacity}`}
                         />
+                    </Card>
+
                     <br/>
                     <UIObjectBar
                         objects={playerObjs}

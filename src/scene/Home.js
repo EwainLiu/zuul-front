@@ -72,9 +72,9 @@ export default function Home() {
                             required
                             fullWidth
                             id="email"
-                            label="Email Address"
+                            label="name"
                             name="email"
-                            autoComplete="email"
+                            autoComplete="name"
                             autoFocus
                         />
                         <TextField
@@ -101,12 +101,12 @@ export default function Home() {
                         </Button>
                         <Grid container>
                             <Grid item xs>
-                                <Link href="#" variant="body2">
+                                <Link href="src/scene/Home#" variant="body2">
                                     Forgot password?
                                 </Link>
                             </Grid>
                             <Grid item>
-                                <Link href="#" variant="body2">
+                                <Link href="src/scene/Home#" variant="body2">
                                     {"Don't have an account? Sign Up"}
                                 </Link>
                             </Grid>

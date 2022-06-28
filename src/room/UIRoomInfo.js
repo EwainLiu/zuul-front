@@ -77,7 +77,7 @@ class UIRoomInfo extends Component {
             <Col span={8}>
                 <Card
                     title={`当前房间`}
-                    style={{height: "300px"}}
+                    style={{height: "300px", width: "700px"}}
                 >
                     {/*<UIInfoBar*/}
                     {/*    label={"房间"}*/}

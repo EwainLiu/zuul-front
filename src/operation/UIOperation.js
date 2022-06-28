@@ -93,7 +93,7 @@ class UIOperation extends Component {
             <Col span={8}>
                 <Card
                     title={`操作`}
-                    style={{height: "300px"}}
+                    style={{height: "300px", width: "300px"}}
                     >
                     <UIDirectionBar   // 方向控制组件
                         directions={directions}
