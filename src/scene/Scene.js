@@ -1,10 +1,11 @@
 import React from "react";
 import {Component} from "react";
-import {Layout, Row, Space} from 'antd'
+import {Col, Layout, Row, Space} from 'antd'
 import UIRoomInfo from "../room/UIRoomInfo";
 import UIPlayerInfo from "../player/UIPlayerInfo";
 import UIOperation from "../operation/UIOperation";
 import {EventEmitter} from 'events';
+import Button from "@mui/material/Button";
 
 const {Content} = Layout;
 
@@ -15,13 +16,24 @@ class Scene extends Component {
             <div>
                 <Layout>
                     <Content style={{padding: "10px"}}>
-                        <Space
-                            align="start"
-                        >
-                            <UIPlayerInfo/>
-                            <UIRoomInfo/>
-                            <UIOperation/>
-                        </Space>
+                        <Row>
+                            <Col>
+                                <UIPlayerInfo/>
+                            </Col>
+                            <Col>
+                                <Row>
+                                    <Col>
+                                        <UIRoomInfo/>
+                                    </Col>
+                                    <Col>
+                                        <UIOperation/>
+                                    </Col>
+                                </Row>
+                                <Row>
+                                    donghua
+                                </Row>
+                            </Col>
+                        </Row>
                     </Content>
                 </Layout>
             </div>

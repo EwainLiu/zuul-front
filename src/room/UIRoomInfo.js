@@ -56,7 +56,6 @@ class UIRoomInfo extends Component {
         let params = {
             name: name
         }
-        console.log("nanana", params);
         await api.post('/pick', params).then(({data}) => {
             if (data.code === 0) {
                 PubSub.publish("PickItem", name);  // 发布拾起

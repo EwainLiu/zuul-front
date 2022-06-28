@@ -153,11 +153,11 @@ class UIObjectBar extends Component {
                     </Row>
                      :
                     <Col
-                        style={{width: "800px", height: "150px", overflow: "auto"}}
+                        style={{width: "800px", height: "170px", overflow: "auto"}}
                     >
-                        <Col span={4}>
-                            物品：
-                        </Col>
+                        {/*<Col span={4}>*/}
+                        {/*    物品：*/}
+                        {/*</Col>*/}
                         <Row>
                             {/*<Space>*/}
                             {objs_col}
