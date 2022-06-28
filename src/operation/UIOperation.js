@@ -9,6 +9,7 @@ import UIExit from "./UIExit";
 import PubSub from "pubsub-js";
 import UIHelpBar from "./UIHelpBar";
 import {useNavigate} from "react-router-dom";
+import UIProtal from "./UIProtal";
 
 class UIOperation extends Component {
     constructor(props) {
@@ -16,7 +17,8 @@ class UIOperation extends Component {
 
         this.state = {
             directions: [],
-            helpInfo: '...'
+            helpInfo: '...',
+            protalVisible: false
         }
     }
 
@@ -66,6 +68,10 @@ class UIOperation extends Component {
                 this.props.isLoading();
                 PubSub.publish("Move", direction);  // 发布
                 this.getDirection();
+            } else if (data.code === 1){
+                this.setState({
+                    protalVisible: true
+                })
             } else {
                 throw data;
             }
@@ -101,6 +107,13 @@ class UIOperation extends Component {
         })
     }
 
+    getRoomInfo = () => {
+        PubSub.publish("GetRoomInfo");
+        this.setState({
+            protalVisible: false
+        })
+    }
+
     render() {
         const {directions, helpInfo} = this.state;
 
@@ -127,6 +140,10 @@ class UIOperation extends Component {
                         handleExit={this.handleExit}
                     />
                 </Card>
+                <UIProtal
+                    visible={this.state.protalVisible}
+                    getRoomInfo={this.getRoomInfo}
+                />
             </Col>
         )
     }

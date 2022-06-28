@@ -30,6 +30,9 @@ class UIRoomInfo extends Component {
         PubSub.subscribe("Back", () => {
             this.getRoomInfo();
         })
+        PubSub.subscribe("GetRoomInfo", () => {
+            this.getRoomInfo();
+        })
         this.getRoomInfo();
     }
 
