@@ -73,7 +73,7 @@ class UIPlayerInfo extends Component {
     /* 获取背包信息 */
     getPacket = async () => {
         console.log("获取背包")
-        await api.get('/packet').then(({data}) => {
+        await api.get('packet').then(({data}) => {
             if (data.code === 0) {
                 this.setState({
                     playerObjs: data.objects,
@@ -120,7 +120,7 @@ class UIPlayerInfo extends Component {
                         />
                     <br/>
                     <UIInfoBar
-                        label={"携带物品重量"}
+                        label={"负重"}
                         info={`${totalWeight} / ${capacity}`}
                         />
                     <br/>

@@ -10,9 +10,13 @@ class UIRoomInfo extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            roomName: '',
+            // roomName: '',
             roomDescription: '',
-            roomObjs: []
+            roomObjs: [{
+                name: 'a',
+                weight: 123,
+                description: '1231231'
+            }]
         }
     }
 
@@ -73,11 +77,11 @@ class UIRoomInfo extends Component {
                     title={`当前房间`}
                     style={{height: "300px"}}
                 >
-                    <UIInfoBar
-                        label={"房间"}
-                        info={roomName}
-                        />
-                    <br/>
+                    {/*<UIInfoBar*/}
+                    {/*    label={"房间"}*/}
+                    {/*    info={roomName}*/}
+                    {/*    />*/}
+                    {/*<br/>*/}
                     <UIInfoBar
                         label={"房间描述"}
                         info={roomDescription}
