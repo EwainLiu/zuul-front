@@ -1,16 +1,39 @@
 import React from "react";
 import {Component} from "react";
-import {Col, Layout, Row, Space} from 'antd'
+import {Alert, Col, Image, Layout, Row, Space, Spin} from 'antd'
 import UIRoomInfo from "../room/UIRoomInfo";
 import UIPlayerInfo from "../player/UIPlayerInfo";
 import UIOperation from "../operation/UIOperation";
 import {EventEmitter} from 'events';
 import Button from "@mui/material/Button";
 import Demo from "../display/Demo";
+import Meta from "antd/es/card/Meta";
+import library from '../pic/library.jpg'
+import happy from '../pic/happy.gif'
+import UIDisplay from "../display/UIDisplay";
 
 const {Content} = Layout;
 
 class Scene extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            loading: false
+        }
+
+        this.UIDisplay = React.createRef();
+    }
+
+    handleFinish = () => {
+        this.setState({
+            loading: false
+        })
+
+        this.UIDisplay.current.reset();
+        console.log("resrt")
+    }
 
     render() {
         return (
@@ -24,14 +47,22 @@ class Scene extends Component {
                             <Col>
                                 <Row>
                                     <Col>
-                                        <UIRoomInfo/>
+                                        <UIRoomInfo
+                                            roomFinish={this.handleFinish}
+                                        >
+                                        </UIRoomInfo>
                                     </Col>
                                     <Col>
-                                        <UIOperation/>
+                                        <UIOperation
+                                            isLoading={() => {this.setState({loading: true})}}
+                                        />
                                     </Col>
                                 </Row>
                                 <Row>
-                                    <Demo/>
+                                    <UIDisplay
+                                        loading={this.state.loading}
+                                        ref={this.UIDisplay}
+                                    />
                                 </Row>
                             </Col>
                         </Row>

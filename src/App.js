@@ -5,6 +5,8 @@ import axios from "axios";
 import api from "./util/config";
 import {Routes, Route} from "react-router-dom"
 import Home from "./scene/Home";
+import GameScene from "./scene/GameScene";
+
 class App extends Component {
 
     render() {

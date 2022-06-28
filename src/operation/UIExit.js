@@ -5,6 +5,10 @@ import {NavLink} from "react-router-dom";
 
 class UIExit extends Component {
 
+    handleExit = () => {
+        this.props.handleExit();
+    }
+
     render() {
 
         return (
@@ -16,7 +20,7 @@ class UIExit extends Component {
                     <Col>
                         <NavLink to={'/'}>
                             <Popover content="结束游戏">
-                                <Button>
+                                <Button onClick={this.handleExit}>
                                     退出
                                 </Button>
                             </Popover>

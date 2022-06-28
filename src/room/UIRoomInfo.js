@@ -1,6 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 import {Component} from "react";
-import {Card, Col} from "antd";
+import {Card, Col, notification} from "antd";
 import api from "../util/config";
 import UIObjectBar from "../util/UIObjectBar";
 import PubSub from "pubsub-js";
@@ -43,13 +43,24 @@ class UIRoomInfo extends Component {
                     roomDescription: data.description,
                     roomObjs: data.objects
                 })
+                // this.props.roomFinish();
             } else {
                 throw data;
             }
         }).catch((err) => {
             console.log("房间信息请求失败")
-        })
+        });
+        this.props.roomFinish();
     }
+
+    openNotification = (placement) => {
+        notification.info({
+            message: `Notification ${placement}`,
+            description:
+                'You cannot take it.',
+            placement,
+        });
+    };
 
     /* 拾起物品 */
     handlePick = async (name) => {
@@ -61,11 +72,31 @@ class UIRoomInfo extends Component {
                 PubSub.publish("PickItem", name);  // 发布拾起
                 this.getRoomInfo();
                 console.log("拾起物品成功");
+            } else if (data.code === 1) {
+                this.openNotification('top')
             } else {
                 throw data;
             }
         }).catch((err) => {
             console.log("拾起物品失败");
+        })
+    }
+
+    /* 吃掉饼干 */
+    handleEat = async (name) => {
+        let params = {
+            itemName: name
+        }
+        await api.post('/eat', params).then(({data}) => {
+
+            if (data.code === 0) {
+                PubSub.publish("EatCookie");
+                this.getRoomInfo();
+            } else {
+                throw data;
+            }
+        }).catch((err) => {
+            console.log("吃饼干失败");
         })
     }
 
@@ -78,11 +109,6 @@ class UIRoomInfo extends Component {
                     title={`当前房间`}
                     style={{height: "300px", width: "700px"}}
                 >
-                    {/*<UIInfoBar*/}
-                    {/*    label={"房间"}*/}
-                    {/*    info={roomName}*/}
-                    {/*    />*/}
-                    {/*<br/>*/}
                     <UIInfoBar
                         label={"描述"}
                         info={roomDescription}
@@ -92,6 +118,7 @@ class UIRoomInfo extends Component {
                         objects={roomObjs}
                         status="room"
                         handlePick={this.handlePick}
+                        handleEat={this.handleEat}
                     />
                 </Card>
             </Col>

@@ -26,6 +26,10 @@ class UIPlayerInfo extends Component {
             this.getPlayer();
             this.getPacket();
         })
+        PubSub.subscribe("EatCookie", (msg, data) => {
+            this.getPlayer();
+            this.getPacket();
+        })
         this.getPlayer();
         this.getPacket();
     }
@@ -88,24 +92,6 @@ class UIPlayerInfo extends Component {
         })
     }
 
-    /* 吃掉饼干 */
-    handleEat = async (name) => {
-        let params = {
-            itemName: name
-        }
-        await api.post('/eat', params).then(({data}) => {
-            console.log("eat => ", data);
-            if (data.code === 0) {
-                this.getPacket();
-                this.getPlayer();
-            } else {
-                throw data;
-            }
-        }).catch((err) => {
-            console.log("吃饼干失败");
-        })
-    }
-
     render() {
         const {playerName, playerObjs, capacity, totalWeight} = this.state;
 
@@ -123,7 +109,7 @@ class UIPlayerInfo extends Component {
                         <br/>
                         <UIInfoBar
                             label={"负重"}
-                            info={`${totalWeight} / ${capacity}`}
+                            info={`${totalWeight} / ${capacity + totalWeight}`}
                         />
                     </Card>
 
@@ -132,6 +118,7 @@ class UIPlayerInfo extends Component {
                         objects={playerObjs}
                         status="packet" // 物品在背包里
                         handleAbandon={this.handleAbandon}
+                        handleEat={this.handleEat}
                         >
                     </UIObjectBar>
                 </Card>

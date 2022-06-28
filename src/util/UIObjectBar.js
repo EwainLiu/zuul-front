@@ -176,7 +176,7 @@ class UIObjectBar extends Component {
                            this.props.status==="packet" ?  // 是否在背包里
                                <Button key="abandon" onClick={this.handleAbandon.bind(this, obj)}>丢弃</Button> :
                                <Button key="pick" onClick={this.handlePick.bind(this, obj)}>拾取</Button>,
-                           obj.name==="magic cookie" || obj.name==="cookie" ?
+                           obj.name==="magic_cookie" ?
                                <Button key="eat" onClick={this.handleEat.bind(this, obj.name)}>吃掉</Button> : <></>
                        ]}
                        >

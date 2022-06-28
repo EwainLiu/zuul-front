@@ -29,6 +29,7 @@ class UIOperation extends Component {
     getDirection = async () => {
         await api.get('/direction').then(({data}) => {
             if (data.code === 0) {
+                // this.props.isLoading();
                 this.setState({
                     directions: data.directions
                 })
@@ -45,7 +46,7 @@ class UIOperation extends Component {
         await api.get('/help').then(({data}) => {
             if (data.code === 0) {
                 this.setState({
-                    helpInfo: data.helpInfo
+                    helpInfo: data.helpInf
                 })
             } else {
                 throw data;
@@ -86,6 +87,18 @@ class UIOperation extends Component {
         })
     }
 
+    handleExit = async () => {
+        await api.post('/exit').then(({data}) => {
+            if (data.code === 0) {
+
+            } else {
+                throw data;
+            }
+        }).catch((err) => {
+            console.log("执行退出失败");
+        })
+    }
+
     render() {
         const {directions, helpInfo} = this.state;
 
@@ -108,7 +121,9 @@ class UIOperation extends Component {
                         helpInfo={helpInfo}
                         />
                     <br/>
-                    <UIExit/>
+                    <UIExit
+                        handleExit={this.handleExit}
+                    />
                 </Card>
             </Col>
         )
