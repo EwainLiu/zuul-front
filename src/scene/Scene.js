@@ -6,6 +6,7 @@ import UIPlayerInfo from "../player/UIPlayerInfo";
 import UIOperation from "../operation/UIOperation";
 import {EventEmitter} from 'events';
 import Button from "@mui/material/Button";
+import Demo from "../display/Demo";
 
 const {Content} = Layout;
 
@@ -30,7 +31,7 @@ class Scene extends Component {
                                     </Col>
                                 </Row>
                                 <Row>
-                                    donghua
+                                    <Demo/>
                                 </Row>
                             </Col>
                         </Row>
