@@ -49,6 +49,7 @@ class UIObjectBar extends Component {
 
     /* 捡起物品放入背包 */
     handlePick = (obj) => {
+        console.log("pick", obj)
         if (obj) {
             this.props.handlePick(obj.name);
         }
@@ -60,8 +61,8 @@ class UIObjectBar extends Component {
     }
 
     /* 从背包丢弃物品 */
-    handleAbandon = () => {
-        this.props.handleAbandon();
+    handleAbandon = (obj) => {
+        this.props.handleAbandon(obj.name);
 
         this.setState({
             id: -1,
@@ -112,12 +113,13 @@ class UIObjectBar extends Component {
                        visible={this.state.visible}
                        onOk={this.handleOk}
                        onCancel={this.handleCancel}
+                       key={obj ? obj.name : ''}
                        footer={[
                            this.props.status==="packet" ?  // 是否在背包里
-                               <Button key="abandon" onClick={this.handleAbandon}>丢弃</Button> :
+                               <Button key="abandon" onClick={this.handleAbandon.bind(this, obj)}>丢弃</Button> :
                                <Button key="pick" onClick={this.handlePick.bind(this, obj)}>拾取</Button>,
                            obj.name==="magic cookie" || obj.name==="cookie" ?
-                               <Button key="eat" onClick={this.handleEat.bind(this, obj.name)}>吃掉</Button> : {}
+                               <Button key="eat" onClick={this.handleEat.bind(this, obj.name)}>吃掉</Button> : <></>
                        ]}
                        >
                     <p>

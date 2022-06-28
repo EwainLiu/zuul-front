@@ -51,6 +51,7 @@ class UIPlayerInfo extends Component {
         let params = {
             name: item
         }
+        console.log('parmas=>', params)
         await api.post('/abandon', params).then(({data}) => {
             console.log("abandon => ", data);
             if (data.code === 0) {
