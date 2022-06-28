@@ -11,6 +11,7 @@ import Meta from "antd/es/card/Meta";
 import library from '../pic/library.jpg'
 import happy from '../pic/happy.gif'
 import UIDisplay from "../display/UIDisplay";
+import Loading from "../util/Loading";
 
 const {Content} = Layout;
 
@@ -32,12 +33,11 @@ class Scene extends Component {
         })
 
         this.UIDisplay.current.reset();
-        console.log("resrt")
     }
 
     render() {
         return (
-            <div>
+            <Spin spinning={this.state.loading}>
                 <Layout>
                     <Content style={{padding: "10px"}}>
                         <Row>
@@ -68,7 +68,7 @@ class Scene extends Component {
                         </Row>
                     </Content>
                 </Layout>
-            </div>
+            </Spin>
         )
     }
 }

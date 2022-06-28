@@ -61,9 +61,7 @@ class UIDisplay extends Component {
                 <Content style={{width: "900px"}}>
                     <Row>
                         <Col style={{width: "130px"}}>
-                            <Button onClick={this.handleMove}>
-                                sa
-                            </Button>
+
                         </Col>
                         <Col className={"haveBg"}
                             style={{
