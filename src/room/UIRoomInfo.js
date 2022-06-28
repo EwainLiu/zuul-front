@@ -83,7 +83,7 @@ class UIRoomInfo extends Component {
                     {/*    />*/}
                     {/*<br/>*/}
                     <UIInfoBar
-                        label={"房间描述"}
+                        label={"描述"}
                         info={roomDescription}
                         />
                     <br/>

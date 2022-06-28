@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Button, Col, Modal, Row} from "antd";
+import {Button, Col, Modal, Popover, Row} from "antd";
 
 /**
  * 帮助
@@ -40,11 +40,13 @@ class UIHelpBar extends Component {
                         帮助 :
                     </Col>
                     <Col>
-                        <Button
-                            onClick={this.handleHelp}
-                        >
-                            帮助
-                        </Button>
+                        <Popover content="显示帮助信息">
+                            <Button
+                                onClick={this.handleHelp}
+                            >
+                                帮助
+                            </Button>
+                        </Popover>
                     </Col>
                 </Row>
                 <Modal

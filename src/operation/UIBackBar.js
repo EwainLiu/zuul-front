@@ -1,6 +1,6 @@
 import React from "react";
 import {Component} from "react";
-import {Button, Col, Row, Space} from "antd";
+import {Button, Col, Popover, Row, Space} from "antd";
 
 class UIBackBar extends Component {
 
@@ -15,12 +15,14 @@ class UIBackBar extends Component {
             <div>
                 <Row>
                     <Col span={4}>
-                        返回上个房间 :
+                        返回 :
                     </Col>
                     <Col>
-                        <Button onClick={this.handleBack}>
-                            返回
-                        </Button>
+                        <Popover content={"返回上个房间"}>
+                            <Button onClick={this.handleBack}>
+                                返回
+                            </Button>
+                        </Popover>
                     </Col>
                 </Row>
             </div>

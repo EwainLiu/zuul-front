@@ -1,6 +1,6 @@
 import React from "react";
 import {Component} from "react";
-import {Button, Col, Row} from "antd";
+import {Button, Col, Popover, Row} from "antd";
 import {NavLink} from "react-router-dom";
 
 class UIExit extends Component {
@@ -11,13 +11,15 @@ class UIExit extends Component {
             <div>
                 <Row>
                     <Col span={4}>
-                        退出游戏 :
+                        结束 :
                     </Col>
                     <Col>
                         <NavLink to={'/'}>
-                            <Button>
-                                退出
-                            </Button>
+                            <Popover content="结束游戏">
+                                <Button>
+                                    退出
+                                </Button>
+                            </Popover>
                         </NavLink>
                     </Col>
                 </Row>
