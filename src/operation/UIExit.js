@@ -1,5 +1,4 @@
-import React from "react";
-import {Component} from "react";
+import React, {Component} from "react";
 import {Button, Col, Popover, Row} from "antd";
 import {NavLink} from "react-router-dom";
 

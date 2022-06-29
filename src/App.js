@@ -2,7 +2,7 @@ import './App.css';
 import {Component} from "react";
 import Scene from "./scene/Scene";
 import axios from "axios";
-import api from "./util/config";
+import api from "./util/Config";
 import {Routes, Route} from "react-router-dom"
 import Home from "./scene/Home";
 import GameScene from "./scene/GameScene";

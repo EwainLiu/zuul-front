@@ -1,6 +1,5 @@
-import React from "react";
-import {Component} from "react";
-import {Col, Row, Space} from "antd";
+import React, {Component} from "react";
+import {Col, Row} from "antd";
 
 class UIInfoBar extends Component {
 

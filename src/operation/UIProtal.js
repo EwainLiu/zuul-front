@@ -16,7 +16,7 @@ class UIProtal extends Component {
                     visible={this.props.visible}
                     key={"protal"}
                     footer={<Button onClick={this.transform}>确定</Button>}
-                    >
+                >
                     将被传送到下一个随机房间
                 </Modal>
             </div>

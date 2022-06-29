@@ -55,7 +55,7 @@ class UIHelpBar extends Component {
                     onOk={this.handleOk}
                     onCancel={this.handleCancel}
                     footer={<Button key="help" onClick={this.handleOk}>确定</Button>}
-                    >
+                >
                     {this.props.helpInfo}
                 </Modal>
             </div>

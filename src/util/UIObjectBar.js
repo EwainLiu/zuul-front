@@ -1,12 +1,9 @@
-import React from "react";
-import {Component} from "react";
-import {Avatar, Button, Card, Col, Layout, Modal, Popover, Radio, Row, Space} from "antd";
-import { EditOutlined, EllipsisOutlined, EyeOutlined } from '@ant-design/icons';
+import React, {Component} from "react";
+import {Button, Card, Col, Modal, Popover, Row} from "antd";
+import {EyeOutlined} from '@ant-design/icons';
 
 import _ from 'lodash';
 import Meta from "antd/es/card/Meta";
-import Sider from "antd/es/layout/Sider";
-import {Content} from "antd/es/layout/layout";
 
 /**
  * 物品栏工具，陈列物品，查看物品详情
@@ -96,7 +93,9 @@ class UIObjectBar extends Component {
                             title={obj.name}
                             key={`objCard_${index}`}
                             seize="small"
-                            extra={<EyeOutlined key="EyeOutlined" onClick={() => {this.handleClick(index)}}></EyeOutlined>}
+                            extra={<EyeOutlined key="EyeOutlined" onClick={() => {
+                                this.handleClick(index)
+                            }}></EyeOutlined>}
                             style={{width: 200}}
                         >
                             <Meta
@@ -117,7 +116,9 @@ class UIObjectBar extends Component {
                             title={obj.name}
                             key={`objCard_${index}`}
                             seize="small"
-                            extra={<EyeOutlined key="EyeOutlined" onClick={() => {this.handleClick(index)}}></EyeOutlined>}
+                            extra={<EyeOutlined key="EyeOutlined" onClick={() => {
+                                this.handleClick(index)
+                            }}></EyeOutlined>}
                             style={{width: 200}}
                         >
                             <Meta
@@ -134,7 +135,7 @@ class UIObjectBar extends Component {
 
         return (
             <div key={"objBar"}>
-                {this.props.status==="packet" ?
+                {this.props.status === "packet" ?
                     <Row style={{height: "400px", width: "200px", overflow: "auto"}} key={"packetRow"}>
                         <Col span={8}>
                             背包：
@@ -145,7 +146,7 @@ class UIObjectBar extends Component {
                             {/*</Space>*/}
                         </Col>
                     </Row>
-                     :
+                    :
                     <Col
                         style={{width: "800px", height: "170px", overflow: "auto"}} key={"roomCol"}
                     >
@@ -167,13 +168,13 @@ class UIObjectBar extends Component {
                        onCancel={this.handleCancel}
                        key={obj ? obj.name : 'objModal'}
                        footer={[
-                           this.props.status==="packet" ?  // 是否在背包里
+                           this.props.status === "packet" ?  // 是否在背包里
                                <Button key="abandon" onClick={this.handleAbandon.bind(this, obj)}>丢弃</Button> :
                                <Button key="pick" onClick={this.handlePick.bind(this, obj)}>拾取</Button>,
-                           obj.name==="magic_cookie" ?
+                           obj.name === "magic_cookie" ?
                                <Button key="eat" onClick={this.handleEat.bind(this, obj.name)}>吃掉</Button> : <></>
                        ]}
-                       >
+                >
                     <p>
                         重量 : {obj ? obj.weight : -1}
                     </p>

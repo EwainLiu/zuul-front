@@ -1,7 +1,6 @@
-import React, {useState} from "react";
-import {Component} from "react";
+import React, {Component} from "react";
 import {Card, Col, notification} from "antd";
-import api from "../util/config";
+import api from "../util/Config";
 import UIObjectBar from "../util/UIObjectBar";
 import PubSub from "pubsub-js";
 import UIInfoBar from "../util/UIInfoBar";
@@ -114,7 +113,7 @@ class UIRoomInfo extends Component {
                     <UIInfoBar
                         label={"描述"}
                         info={roomDescription}
-                        />
+                    />
                     <br/>
                     <UIObjectBar
                         objects={roomObjs}

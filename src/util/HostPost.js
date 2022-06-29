@@ -1,4 +1,4 @@
-import {hostUrl} from "./config";
+import {hostUrl} from "./Config";
 
 export default function HostPost(url, data) {
     return fetch(hostUrl + url, {

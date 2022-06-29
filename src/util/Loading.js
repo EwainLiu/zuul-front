@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Alert, Spin} from "antd";
+import {Spin} from "antd";
 
 class Loading extends Component {
     constructor(props) {

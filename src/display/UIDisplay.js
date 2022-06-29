@@ -4,12 +4,8 @@ import library from "../pic/library.jpg";
 import happy from "../pic/happy.gif";
 import chasing from "../pic/chasing.gif"
 import {Content} from "antd/es/layout/layout";
-import Button from "@mui/material/Button";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css"
-import {Animated, Text, View} from 'react-native'
-import PropTypes from "prop-types";
-import TweenOne from "rc-tween-one";
 import PubSub from "pubsub-js";
 
 class UIDisplay extends Component {
@@ -63,11 +59,11 @@ class UIDisplay extends Component {
 
                         </Col>
                         <Col className={"haveBg"}
-                            style={{
-                                width: "720px",
-                                height: "355px",
-                                backgroundImage: `url(${library})`
-                            }}
+                             style={{
+                                 width: "720px",
+                                 height: "355px",
+                                 backgroundImage: `url(${library})`
+                             }}
                         >
                             <Row
                                 align={this.state.y}
@@ -77,7 +73,7 @@ class UIDisplay extends Component {
                                 <Image
                                     style={{height: "100px", width: "100px"}}
                                     src={this.state.pic}
-                                    />
+                                />
                             </Row>
                         </Col>
                     </Row>

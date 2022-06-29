@@ -1,8 +1,7 @@
-import React from "react";
-import {Component} from "react";
+import React, {Component} from "react";
 import {Card, Col} from "antd";
 import UIObjectBar from "../util/UIObjectBar";
-import api from "../util/config";
+import api from "../util/Config";
 import PubSub from 'pubsub-js'
 import UIInfoBar from "../util/UIInfoBar";
 
@@ -101,7 +100,7 @@ class UIPlayerInfo extends Component {
                 <Card
                     title={`玩家信息`}
                     style={{height: "640px", width: "300px"}}
-                    >
+                >
                     <Card>
                         <UIInfoBar
                             label={"名称"}
@@ -120,7 +119,7 @@ class UIPlayerInfo extends Component {
                         status="packet" // 物品在背包里
                         handleAbandon={this.handleAbandon}
                         handleEat={this.handleEat}
-                        >
+                    >
                     </UIObjectBar>
                 </Card>
             </Col>

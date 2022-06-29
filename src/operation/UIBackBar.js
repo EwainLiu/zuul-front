@@ -1,6 +1,5 @@
-import React from "react";
-import {Component} from "react";
-import {Button, Col, Popover, Row, Space} from "antd";
+import React, {Component} from "react";
+import {Button, Col, Popover, Row} from "antd";
 
 class UIBackBar extends Component {
 

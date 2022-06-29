@@ -8,7 +8,7 @@ class UIProtalBar extends Component {
             <Modal
                 title="传送门"
                 visible={this.props.protal}
-                >
+            >
                 这是一个传送房间，随机传送到其他房间
             </Modal>
         )

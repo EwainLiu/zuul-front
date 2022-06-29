@@ -1,17 +1,9 @@
-import React from "react";
-import {Component} from "react";
-import {Alert, Col, Image, Layout, Row, Space, Spin} from 'antd'
+import React, {Component} from "react";
+import {Col, Layout, Row, Spin} from 'antd'
 import UIRoomInfo from "../room/UIRoomInfo";
 import UIPlayerInfo from "../player/UIPlayerInfo";
 import UIOperation from "../operation/UIOperation";
-import {EventEmitter} from 'events';
-import Button from "@mui/material/Button";
-import Demo from "../display/Demo";
-import Meta from "antd/es/card/Meta";
-import library from '../pic/library.jpg'
-import happy from '../pic/happy.gif'
 import UIDisplay from "../display/UIDisplay";
-import Loading from "../util/Loading";
 
 const {Content} = Layout;
 
@@ -70,8 +62,12 @@ class Scene extends Component {
                                 <Row>
                                     <Col>
                                         <UIRoomInfo
-                                            moveLoading={() => {this.setState({moveLoading: true})}}
-                                            pickLoading={() => {this.setState({pickLoading: true})}}
+                                            moveLoading={() => {
+                                                this.setState({moveLoading: true})
+                                            }}
+                                            pickLoading={() => {
+                                                this.setState({pickLoading: true})
+                                            }}
                                             moveFinish={this.handleMoveFinish}
                                             pickFinish={this.handlePickFinish}
                                         >
@@ -79,8 +75,12 @@ class Scene extends Component {
                                     </Col>
                                     <Col>
                                         <UIOperation
-                                            moveLoading={() => {this.setState({moveLoading: true})}}
-                                            pickFinish={() => {this.handlePickFinish()}}
+                                            moveLoading={() => {
+                                                this.setState({moveLoading: true})
+                                            }}
+                                            pickFinish={() => {
+                                                this.handlePickFinish()
+                                            }}
                                         />
                                     </Col>
                                 </Row>

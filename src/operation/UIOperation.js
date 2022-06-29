@@ -1,14 +1,11 @@
-import React from "react";
-import {Component} from "react";
-import {Button, Card, Col} from "antd";
-import UIObjectBar from "../util/UIObjectBar";
+import React, {Component} from "react";
+import {Card, Col} from "antd";
 import UIDirectionBar from "./UIDirectionBar";
-import api from "../util/config";
+import api from "../util/Config";
 import UIBackBar from "./UIBackBar";
 import UIExit from "./UIExit";
 import PubSub from "pubsub-js";
 import UIHelpBar from "./UIHelpBar";
-import {useNavigate} from "react-router-dom";
 import UIProtal from "./UIProtal";
 
 class UIOperation extends Component {
@@ -69,7 +66,7 @@ class UIOperation extends Component {
                 this.props.moveLoading();
                 PubSub.publish("Move", direction);  // 发布
                 this.getDirection();
-            } else if (data.code === 1){
+            } else if (data.code === 1) {
                 this.setState({
                     protalVisible: true
                 })
@@ -123,19 +120,19 @@ class UIOperation extends Component {
                 <Card
                     title={`操作`}
                     style={{height: "300px", width: "300px"}}
-                    >
+                >
                     <UIDirectionBar   // 方向控制组件
                         directions={directions}
                         handleMove={this.handleMove}
-                        />
+                    />
                     <br/>
                     <UIBackBar
                         handleBack={this.handleBack}
-                        />
+                    />
                     <br/>
                     <UIHelpBar
                         helpInfo={helpInfo}
-                        />
+                    />
                     <br/>
                     <UIExit
                         handleExit={this.handleExit}
