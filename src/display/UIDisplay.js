@@ -33,7 +33,6 @@ class UIDisplay extends Component {
     }
 
     handleMove = (direction) => {
-        console.log("I will move", direction)
         const map = {
             east: {x: "end"},
             west: {x: "start"},

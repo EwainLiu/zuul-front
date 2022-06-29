@@ -48,6 +48,7 @@ class UIPlayerInfo extends Component {
         }).catch((err) => {
             console.log("玩家信息请求失败")
         })
+        this.props.playerFinish();
     }
 
     /* 将物品从背包丢弃 */

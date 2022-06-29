@@ -40,27 +40,25 @@ class UIRoomInfo extends Component {
     getRoomInfo = async () => {
         await api.get('/roomInfo').then(({data}) => {
             if (data.code === 0) {
-                console.log("请求房间信息成功")
                 this.setState({
                     roomName: data.name,
                     roomDescription: data.description,
                     roomObjs: data.objects
                 })
-                // this.props.roomFinish();
             } else {
                 throw data;
             }
         }).catch((err) => {
             console.log("房间信息请求失败")
         });
-        this.props.roomFinish();
+        this.props.moveFinish();
     }
 
     openNotification = (placement) => {
         notification.info({
-            message: `Notification ${placement}`,
+            message: `Notification`,
             description:
-                'You cannot take it.',
+                'You cannot lift it.',
             placement,
         });
     };
@@ -72,9 +70,9 @@ class UIRoomInfo extends Component {
         }
         await api.post('/pick', params).then(({data}) => {
             if (data.code === 0) {
+                this.props.pickLoading();
                 PubSub.publish("PickItem", name);  // 发布拾起
                 this.getRoomInfo();
-                console.log("拾起物品成功");
             } else if (data.code === 1) {
                 this.openNotification('top')
             } else {
@@ -83,6 +81,7 @@ class UIRoomInfo extends Component {
         }).catch((err) => {
             console.log("拾起物品失败");
         })
+        this.props.pickFinish();
     }
 
     /* 吃掉饼干 */

@@ -64,8 +64,9 @@ class UIOperation extends Component {
             direction: direction
         }
         await api.post('/move', params).then(({data}) => {
+            console.log("move", data)
             if (data.code === 0) {
-                this.props.isLoading();
+                this.props.moveLoading();
                 PubSub.publish("Move", direction);  // 发布
                 this.getDirection();
             } else if (data.code === 1){
@@ -84,7 +85,7 @@ class UIOperation extends Component {
     handleBack = async () => {
         await api.post('/back').then(({data}) => {
             if (data.code === 0) {
-                this.props.isLoading();
+                this.props.moveLoading();
                 PubSub.publish("Back");  // 发布
                 this.getDirection();
             } else {

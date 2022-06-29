@@ -90,23 +90,20 @@ class UIObjectBar extends Component {
         /* 将objects用分别封装为Button组件 */
         const objs_row = _(this.props.objects).map((obj, index) => {
             return (
-                <Row span={8}>
+                <Row span={8} key={`row_${index}`}>
                     <Popover key={`obj_${index}`} content={obj.description}>
                         <Card
                             title={obj.name}
+                            key={`objCard_${index}`}
                             seize="small"
                             extra={<EyeOutlined key="EyeOutlined" onClick={() => {this.handleClick(index)}}></EyeOutlined>}
                             style={{width: 200}}
                         >
                             <Meta
+                                key={`Meta_${index}`}
                                 description={obj.description}
                             />
                         </Card>
-                        {/*<Button key={index}*/}
-                        {/*        onClick={() => this.handleClick(index)}*/}
-                        {/*>*/}
-                        {/*    {obj.name}*/}
-                        {/*</Button>*/}
                     </Popover>
                 </Row>
             )
@@ -114,23 +111,20 @@ class UIObjectBar extends Component {
 
         const objs_col = _(this.props.objects).map((obj, index) => {
             return (
-                <Col span={8}>
+                <Col span={8} key={`row_${index}`}>
                     <Popover key={`obj_${index}`} content={obj.description}>
                         <Card
                             title={obj.name}
+                            key={`objCard_${index}`}
                             seize="small"
                             extra={<EyeOutlined key="EyeOutlined" onClick={() => {this.handleClick(index)}}></EyeOutlined>}
                             style={{width: 200}}
                         >
                             <Meta
+                                key={`Meta_${index}`}
                                 description={obj.description}
                             />
                         </Card>
-                        {/*<Button key={index}*/}
-                        {/*        onClick={() => this.handleClick(index)}*/}
-                        {/*>*/}
-                        {/*    {obj.name}*/}
-                        {/*</Button>*/}
                     </Popover>
                 </Col>
             )
@@ -139,9 +133,9 @@ class UIObjectBar extends Component {
         const obj = this.props.objects[this.state.id] ? this.props.objects[this.state.id] : {id: -1, name: ""}
 
         return (
-            <div>
+            <div key={"objBar"}>
                 {this.props.status==="packet" ?
-                    <Row style={{height: "400px", width: "200px", overflow: "auto"}}>
+                    <Row style={{height: "400px", width: "200px", overflow: "auto"}} key={"packetRow"}>
                         <Col span={8}>
                             背包：
                         </Col>
@@ -153,7 +147,7 @@ class UIObjectBar extends Component {
                     </Row>
                      :
                     <Col
-                        style={{width: "800px", height: "170px", overflow: "auto"}}
+                        style={{width: "800px", height: "170px", overflow: "auto"}} key={"roomCol"}
                     >
                         {/*<Col span={4}>*/}
                         {/*    物品：*/}
@@ -171,7 +165,7 @@ class UIObjectBar extends Component {
                        visible={this.state.visible}
                        onOk={this.handleOk}
                        onCancel={this.handleCancel}
-                       key={obj ? obj.name : ''}
+                       key={obj ? obj.name : 'objModal'}
                        footer={[
                            this.props.status==="packet" ?  // 是否在背包里
                                <Button key="abandon" onClick={this.handleAbandon.bind(this, obj)}>丢弃</Button> :
